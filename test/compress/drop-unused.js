@@ -644,6 +644,42 @@ drop_toplevel_funcs_retain: {
     }
 }
 
+drop_toplevel_funcs_retain_reduce_vars_1: {
+    options = {
+        top_retain: "f",
+        toplevel: "funcs",
+        reduce_vars: true,
+        unused: true,
+    }
+    input: {
+        function f() { return 2; }
+        f();
+    }
+    expect: {
+        function f() { return 2; }
+        f();
+    }
+}
+
+drop_toplevel_funcs_retain_reduce_vars_2: {
+    options = {
+        top_retain: "f",
+        toplevel: "funcs",
+        reduce_vars: true,
+        unused: true,
+    }
+    input: {
+        function f() { return 2; }
+        f();
+        f();
+    }
+    expect: {
+        function f() { return 2; }
+        f();
+        f();
+    }
+}
+
 drop_toplevel_vars_retain: {
     options = {
         top_retain: "f,a,o",
